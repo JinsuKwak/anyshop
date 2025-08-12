@@ -1,0 +1,33 @@
+# Node
+node_modules/
+.next/
+out/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+*.sqlite3
+
+# Django
+/staticfiles/
+media/
+
+# Environment
+.env
+.env.local
+.env.production
+.env.development
+
+# Docker
+*.pid
+*.log
+docker-compose.override.yml
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
