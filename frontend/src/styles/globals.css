@@ -341,3 +341,17 @@
     font-size: 0.8rem;
   }
 }
+
+.search-bar {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .search-bar {
+    min-width: 250px;
+  }
+}
+@media (min-width: 768px) {
+  .search-bar {
+    min-width: 450px;
+  }
+}
