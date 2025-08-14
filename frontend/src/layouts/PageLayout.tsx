@@ -7,7 +7,7 @@ interface PageLayoutProps {
 
 export default function PageLayout({ children }: PageLayoutProps) {
   return (
-    <div className="relative flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col theme-container">
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />

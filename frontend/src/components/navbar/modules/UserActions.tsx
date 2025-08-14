@@ -11,7 +11,7 @@ export default function UserActions() {
   const mockUser = {
     name: "Chris Nolan",
     avatarUrl: "https://i.pravatar.cc/80?img=12",
-    role: ROLE.MEMBER, // "guest" | "member" | "manager" | "owner" | "admin"
+    role: ROLE.ADMIN, // "guest" | "member" | "manager" | "owner" | "admin"
   };
 
   return (
