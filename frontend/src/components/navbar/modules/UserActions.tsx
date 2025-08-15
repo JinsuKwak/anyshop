@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MenuIcon } from "lucide-react";
 import { Button } from "../../ui/button";
 import AccountMenu from "./AccountMenu";
-import { ROLE } from "@/utils/roles";
+import { ROLE } from "@/utils/rolesUtil";
 import CartMenu from "./CartMenu";
 
 export default function UserActions() {

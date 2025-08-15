@@ -11,8 +11,6 @@ export const dummyMainDisplayItems: MainDisplay[] = [
     cta_label: "Shop Now",
     sort_order: 1,
     is_active: true,
-    starts_at: new Date("2025-01-01T00:00:00Z"),
-    ends_at: new Date("2025-12-31T23:59:59Z"),
     created_at: new Date(),
     updated_at: new Date(),
   },
@@ -23,6 +21,8 @@ export const dummyMainDisplayItems: MainDisplay[] = [
     product_id: "a1b2c3d4-e5f6-7890-1234-567890abcdef", // Laptop Pro
     image_url:
       "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=2864&auto=format&fit=crop",
+    link_url: "/products",
+    cta_label: "Shop Now",
     sort_order: 2,
     is_active: true,
     created_at: new Date(),
@@ -33,9 +33,9 @@ export const dummyMainDisplayItems: MainDisplay[] = [
     store_id: "d2e3f4g5-h6i7-8901-2345-678901cdefab",
     type: DisplayType.EXTERNAL_LINK,
     image_url:
-      "https://images.unsplash.com/photo-1526657782461-9fe13504a853?q=80&w=2874&auto=format&fit=crop",
-    link_url: "https://example.com/blog-post",
-    cta_label: "Read More",
+      "https://images.unsplash.com/photo-1754920888466-37fc88567012?q=80&w=1827&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    link_url: " ",
+    cta_label: "",
     sort_order: 3,
     is_active: true,
     created_at: new Date(),

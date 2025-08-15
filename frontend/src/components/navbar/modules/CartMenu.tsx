@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ShoppingCart as ShoppingCartIcon, ChevronRight } from "lucide-react";
 import { Button } from "../../ui/button";
-import { ROLE, type RoleLevel } from "@/utils/roles";
+import { ROLE, type RoleLevel } from "@/utils/rolesUtil";
 
 import {
   DropdownMenu,
@@ -47,7 +47,7 @@ export default function CartMenu({
           <Button
             variant="secondary"
             size="icon"
-            className="hidden md:flex size-8 cursor-pointer hover:ring-2 hover:ring-[var(--color-ring)] transition-all"
+            className="hidden md:flex size-8 cursor-pointer hover:ring-2 hover:ring-[var(--color-ring)] transition-all border shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/10 hover:bg-background/40"
             aria-label="Open cart"
           >
             <ShoppingCartIcon className="h-6 w-6" />

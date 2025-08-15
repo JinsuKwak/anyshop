@@ -1,5 +1,5 @@
 import { MENU_CONFIG } from "@/components/navbar/modules/AccountMenuConfig";
-import { ROLE, type RoleLevel } from "@/utils/roles";
+import { ROLE, type RoleLevel } from "@/utils/rolesUtil";
 import { ComponentType } from "react";
 import {
   MANAGER_PLUS_COMMON,

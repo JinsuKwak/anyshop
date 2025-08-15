@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MenuItem } from "@/utils/menus";
+import { MenuItem } from "@/utils/menuUtil";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -13,8 +13,8 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { ROLE, type RoleLevel } from "@/utils/roles";
-import { buildMenu } from "@/utils/menus";
+import { ROLE, type RoleLevel } from "@/utils/rolesUtil";
+import { buildMenu } from "@/utils/menuUtil";
 
 type AccountMenuProps = {
   user?: {

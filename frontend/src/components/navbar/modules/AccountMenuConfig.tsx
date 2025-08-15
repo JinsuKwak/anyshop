@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { type MenuItem } from "@/utils/menus";
+import { type MenuItem } from "@/utils/menuUtil";
 
 import {
   LogOut,
@@ -15,7 +15,7 @@ import {
   Users,
   ChartNoAxesColumnIncreasing,
 } from "lucide-react";
-import { ROLE, type RoleLevel, roleToIcon } from "@/utils/roles";
+import { ROLE, type RoleLevel, roleToIcon } from "@/utils/rolesUtil";
 
 type MenuConfig = {
   commonHeader: {

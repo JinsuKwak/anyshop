@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { MountainIcon } from "lucide-react";
+import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
+import CategoryDrawer from "./CategroyDrawer";
 
 export default function LogoAndLinks() {
   return (
@@ -9,12 +11,14 @@ export default function LogoAndLinks() {
         <span className="font-bold hidden sm:flex">Acme Inc</span>
       </Link>
       <div className="hidden md:flex items-center space-x-6">
-        <Link
-          href="#"
-          className="text-foreground/60 transition-colors hover:text-foreground/80"
-        >
-          Products
-        </Link>
+        <Drawer>
+          <DrawerTrigger asChild>
+            <div className="text-foreground/60 transition-colors hover:text-foreground/80 cursor-pointer">
+              Products
+            </div>
+          </DrawerTrigger>
+          <CategoryDrawer />
+        </Drawer>
         <Link
           href="#"
           className="text-foreground/60 transition-colors hover:text-foreground/80"
