@@ -12,7 +12,6 @@ export interface MainDisplay {
   image_url: string;
   link_url: string;
   cta_label: string;
-  sort_order: number;
   is_active: boolean;
   created_at: Date;
   updated_at: Date;

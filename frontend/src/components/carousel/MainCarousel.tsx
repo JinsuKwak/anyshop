@@ -39,11 +39,9 @@ function MainCarousel() {
   }
 
   if (!items || items.length === 0) {
-    // if user role is admin show message to add items
+    // if user role is admin show message to add items TODO
     return null;
   }
-
-  const sortedItems = [...items].sort(sortByOrder);
 
   return (
     <Carousel
@@ -60,9 +58,9 @@ function MainCarousel() {
       ]}
     >
       <CarouselContent>
-        {sortedItems.map((item) => (
+        {items.map((item) => (
           <CarouselItem key={item.id}>
-            <div className="p-1">
+            <div className="p-4">
               <Link href={isValidURL(item.link_url) ? item.link_url : "#"}>
                 <Card className="overflow-hidden p-0">
                   <CardContent className="flex aspect-4/1 items-center justify-center relative">

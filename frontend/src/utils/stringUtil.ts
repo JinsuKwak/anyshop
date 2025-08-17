@@ -11,3 +11,16 @@ export function isValidURL(str: string | null | undefined): boolean {
     return false;
   }
 }
+export function formatPrice(
+  priceCents: number,
+  currency: string = "USD"
+): string {
+  return (priceCents / 100)
+    .toLocaleString("en-US", {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+    .replace(/[^0-9.,]/g, "");
+}

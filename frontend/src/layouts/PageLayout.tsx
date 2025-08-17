@@ -10,7 +10,9 @@ export default function PageLayout({ children }: PageLayoutProps) {
     <div className="relative flex min-h-screen flex-col theme-container">
       <Navbar />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <div className="border-t border-gray-200">
+        <Footer />
+      </div>
     </div>
   );
 }
