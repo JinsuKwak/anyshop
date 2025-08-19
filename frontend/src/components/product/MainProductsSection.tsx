@@ -9,13 +9,17 @@ const SETTING = process.env.NEXT_PUBLIC_SETTINGS;
 
 type Size = "sm" | "md" | "lg";
 
-interface MainProductsProps {
+interface MainProductsSectionProps {
   heading: string;
   link: string;
   fetchUrl: string;
 }
 
-function MainProducts({ heading, link, fetchUrl }: MainProductsProps) {
+function MainProductsSection({
+  heading,
+  link,
+  fetchUrl,
+}: MainProductsSectionProps) {
   const OPTIONS = {
     size: "lg" as Size,
   };
@@ -86,4 +90,4 @@ function MainProducts({ heading, link, fetchUrl }: MainProductsProps) {
   );
 }
 
-export default MainProducts;
+export default MainProductsSection;

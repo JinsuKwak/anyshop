@@ -1,22 +1,24 @@
 "use client";
 
 import MainCarousel from "@/components/carousel/MainCarousel";
-import MainProducts from "@/components/product/MainProducts";
+import MainProductsSection from "@/components/product/MainProductsSection";
+import MainCategorySection from "@/components/category/MainCategorySection";
 
 export default function Home() {
   return (
     <div className="container py-10 space-y-12">
       <MainCarousel />
-      <MainProducts
+      <MainProductsSection
         heading={"Featured Products"}
         link={"/products/all"}
         fetchUrl={"/main-featured-products"}
       />
-      <MainProducts
+      <MainProductsSection
         heading={"On Sale"}
         link={"/products/sales"}
         fetchUrl={"/main-sales-products"}
       />
+      <MainCategorySection />
     </div>
   );
 }
