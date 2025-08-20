@@ -11,11 +11,13 @@ export default function Home() {
       <MainProductsSection
         heading={"Featured Products"}
         link={"/products/all"}
+        editLink={"/manager/main-featured-products"}
         fetchUrl={"/main-featured-products"}
       />
       <MainProductsSection
         heading={"On Sale"}
         link={"/products/sales"}
+        editLink={"/manager/main-sales-products"}
         fetchUrl={"/main-sales-products"}
       />
       <MainCategorySection />

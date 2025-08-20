@@ -17,9 +17,13 @@ import { MainCarouselSkeleton } from "@/components/skeletons/MainCarouselSkeleto
 import { ErrorDisplay } from "@/components/ErrorDisplay";
 import { Button } from "../ui/button";
 import { isEmptyString, isValidURL } from "@/utils/stringUtil";
-import { sortByOrder } from "@/utils/sortUtils";
+import { useAuth } from "@/hooks/useAuth";
+import { SquarePen } from "lucide-react";
+import ManagerEditButton from "../ui/ManagerEditButton";
 
 function MainCarousel() {
+  const { isAuthenticated, role } = useAuth();
+
   const {
     data: items,
     error,
@@ -44,51 +48,60 @@ function MainCarousel() {
   }
 
   return (
-    <Carousel
-      className="w-10/10 mx-auto mt-10"
-      opts={{
-        align: "start",
-        loop: true,
-      }}
-      plugins={[
-        Autoplay({
-          delay: 8000,
-          stopOnInteraction: false,
-        }),
-      ]}
-    >
-      <CarouselContent>
-        {items.map((item) => (
-          <CarouselItem key={item.id}>
-            <div className="p-4">
-              <Link href={isValidURL(item.link_url) ? item.link_url : "#"}>
-                <Card className="overflow-hidden p-0">
-                  <CardContent className="flex aspect-4/1 items-center justify-center relative">
-                    {item.image_url && (
-                      <Image
-                        src={item.image_url}
-                        alt={item.cta_label || "Carousel image"}
-                        placeholder="blur"
-                        blurDataURL={item.image_url} //TODO
-                        fill={true}
-                        style={{
-                          objectFit: "cover",
-                        }}
-                      />
-                    )}
-                    {!isEmptyString(item.cta_label) && (
-                      <Button className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-lg font-bold bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] hover:text-[var(--color-primary)] shadow-none">
-                        {item.cta_label}
-                      </Button>
-                    )}
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+    <div className="relative">
+      {isAuthenticated && role >= 2 && (
+        <ManagerEditButton
+          href="/admin/main-display"
+          className="absolute top-6 right-6 z-20"
+          label="Edit main carousel"
+        />
+      )}
+      <Carousel
+        className="w-10/10 mx-auto mt-10"
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        plugins={[
+          Autoplay({
+            delay: 8000,
+            stopOnInteraction: false,
+          }),
+        ]}
+      >
+        <CarouselContent>
+          {items.map((item) => (
+            <CarouselItem key={item.id}>
+              <div className="p-4">
+                <Link href={isValidURL(item.link_url) ? item.link_url : "#"}>
+                  <Card className="overflow-hidden p-0">
+                    <CardContent className="flex aspect-4/1 items-center justify-center relative">
+                      {item.image_url && (
+                        <Image
+                          src={item.image_url}
+                          alt={item.cta_label || "Carousel image"}
+                          placeholder="blur"
+                          blurDataURL={item.image_url} //TODO
+                          fill={true}
+                          style={{
+                            objectFit: "cover",
+                          }}
+                        />
+                      )}
+                      {!isEmptyString(item.cta_label) && (
+                        <Button className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-lg font-bold bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] hover:text-[var(--color-primary)] shadow-none">
+                          {item.cta_label}
+                        </Button>
+                      )}
+                    </CardContent>
+                  </Card>
+                </Link>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    </div>
   );
 }
 

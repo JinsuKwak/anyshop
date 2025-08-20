@@ -132,7 +132,7 @@ export default function CartMenu({
               </Button>
               <Button asChild variant="outline" className="w-full">
                 <Link
-                  href="/login"
+                  href="/auth/sign-in"
                   className="flex items-center justify-between"
                 >
                   <span>Log in for faster checkout</span>

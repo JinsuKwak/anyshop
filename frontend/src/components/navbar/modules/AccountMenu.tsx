@@ -13,17 +13,10 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { ROLE, type RoleLevel } from "@/utils/rolesUtil";
 import { buildMenu } from "@/utils/menuUtil";
-
-type AccountMenuProps = {
-  user?: {
-    name?: string;
-    avatarUrl?: string;
-    role?: RoleLevel;
-  } | null;
-  onLogout?: () => void;
-};
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { signOutThunk } from "@/lib/redux/slices/authThunks";
+import { useAuth } from "@/hooks/useAuth";
 
 function MenuItemLeaf({
   item,
@@ -102,13 +95,15 @@ function MenuItemNode({
   return <MenuItemLeaf item={item} onAction={onAction} />;
 }
 
-export default function AccountMenu({ user, onLogout }: AccountMenuProps) {
-  const isAuthed = !!user && user?.role !== ROLE.GUEST;
-  const role: RoleLevel = user?.role ?? ROLE.GUEST;
-  const { headerIcon: HeaderIcon, items } = buildMenu(role, isAuthed);
+export default function AccountMenu() {
+  const dispatch = useAppDispatch();
+  const { isAuthenticated, user, role } = useAuth();
+  const { headerIcon: HeaderIcon, items } = buildMenu(role, isAuthenticated);
 
   const handleAction = (key: string) => {
-    if (key === "logout") onLogout?.();
+    if (key === "logout") {
+      dispatch(signOutThunk({ redirectTo: "/" }));
+    }
     // Future actions can be handled here
   };
 
@@ -124,12 +119,12 @@ export default function AccountMenu({ user, onLogout }: AccountMenuProps) {
              "
           >
             <AvatarImage
-              src={user?.avatarUrl ?? "https://github.com/evilrabbit.png"}
-              alt={user?.name ?? "User"}
+              src={user?.avatar_url ?? "https://github.com/evilrabbit.png"}
+              alt={user?.first_name ?? "User"}
               className="rounded-full ring-0 ring-offset-2 ring-offset-background transition-all duration-200 group-hover:ring-2 group-hover:ring-primary/50 group-hover:scale-105"
             />
             <AvatarFallback className="rounded-full">
-              {user?.name?.[0] ?? "U"}
+              {user?.last_name?.[0] ?? "U"}
             </AvatarFallback>
           </Avatar>
         </div>
@@ -137,8 +132,12 @@ export default function AccountMenu({ user, onLogout }: AccountMenuProps) {
 
       <DropdownMenuContent className="w-64" align="end" sideOffset={8}>
         <div className="flex items-center justify-between">
-          <DropdownMenuLabel className="flex items-center space-x-2 h-10">
-            {isAuthed ? user?.name ?? "My Account" : "Welcome"}
+          <DropdownMenuLabel className="flex items-center space-x-2 h-10 truncate max-w-48">
+            {isAuthenticated
+              ? user?.first_name && user?.last_name
+                ? `${user.first_name} ${user.last_name}`
+                : "My Account"
+              : "Welcome"}
           </DropdownMenuLabel>
           {HeaderIcon ? (
             <HeaderIcon
@@ -157,7 +156,7 @@ export default function AccountMenu({ user, onLogout }: AccountMenuProps) {
             />
           ))}
 
-          {isAuthed ? <DropdownMenuSeparator /> : null}
+          {isAuthenticated ? <DropdownMenuSeparator /> : null}
 
           {items.plus?.length ? (
             <>

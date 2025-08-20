@@ -7,10 +7,10 @@ export default function SearchBar() {
   return (
     <div className="flex items-center space-x-2">
       <Command
-        className="rounded-lg border shadow-sm md:min-w-[450px] sm:min-w-[300px] border] 
+        className="rounded-lg border shadow-sm md:min-w-[450px] sm:min-w-[300px] border 
                border-[var(--color-border)] focus-within:ring-2 focus-within:ring-[var(--color-ring)] hover:ring-2 hover:ring-[var(--color-ring)]  hover:bg-background/40 transition-all backdrop-blur supports-[backdrop-filter]:bg-background/10"
       >
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder="Find anything..." />
       </Command>
       <Link href="#" className="mr-6 flex items-center space-x-2">
         <Button

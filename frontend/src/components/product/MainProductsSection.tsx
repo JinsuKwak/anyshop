@@ -4,44 +4,49 @@ import { MainProductCardSkeleton } from "@/components/skeletons/MainProductCardS
 import { ErrorDisplay } from "@/components/ErrorDisplay";
 import Link from "next/link";
 import ProductCard from "./ProductCard";
-
-const SETTING = process.env.NEXT_PUBLIC_SETTINGS;
-
-type Size = "sm" | "md" | "lg";
+import { CardSize } from "@/lib/redux/slices/appSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import ManagerEditButton from "../ui/ManagerEditButton";
+import { useAuth } from "@/hooks/useAuth";
 
 interface MainProductsSectionProps {
   heading: string;
   link: string;
+  editLink: string;
   fetchUrl: string;
 }
 
 function MainProductsSection({
   heading,
   link,
+  editLink,
   fetchUrl,
 }: MainProductsSectionProps) {
+  const appState = useSelector((state: RootState) => state.app);
   const OPTIONS = {
-    size: "lg" as Size,
+    cardSize: appState.options.cardSize,
   };
 
   const { data: products, error, loading } = useFetch<Product[]>(fetchUrl);
+  const { isAuthenticated, role } = useAuth();
 
   // Grid
-  const lgColsBySize: Record<Size, string> = {
+  const lgColsBySize: Record<CardSize, string> = {
     sm: "lg:grid-cols-6",
     md: "lg:grid-cols-5",
     lg: "lg:grid-cols-4",
   };
 
   // Gap
-  const gapBySize: Record<Size, string> = {
+  const gapBySize: Record<CardSize, string> = {
     sm: "gap-3",
     md: "gap-4",
     lg: "gap-6",
   };
 
   // Medium
-  const mdColsBySize: Record<Size, string> = {
+  const mdColsBySize: Record<CardSize, string> = {
     sm: "md:grid-cols-5",
     md: "md:grid-cols-3",
     lg: "md:grid-cols-2",
@@ -49,9 +54,9 @@ function MainProductsSection({
 
   const gridClass = [
     "grid",
-    mdColsBySize[OPTIONS.size],
-    lgColsBySize[OPTIONS.size],
-    gapBySize[OPTIONS.size],
+    mdColsBySize[OPTIONS.cardSize],
+    lgColsBySize[OPTIONS.cardSize],
+    gapBySize[OPTIONS.cardSize],
     "p-4",
   ].join(" ");
 
@@ -77,13 +82,27 @@ function MainProductsSection({
 
   return (
     <div className="mt-10">
-      <Link href={link} className="hover:underline">
-        <h2 className="text-2xl font-bold mb-4">{heading}</h2>
-      </Link>
+      <div className="flex items-center justify-between mb-4">
+        <Link href={link} className="hover:underline">
+          <h2 className="text-2xl font-bold">{heading}</h2>
+        </Link>
+
+        {isAuthenticated && role >= 2 && (
+          <ManagerEditButton
+            href={editLink}
+            label="Edit"
+            className="ml-4 mr-6"
+          />
+        )}
+      </div>
 
       <div className={`${gridClass} `}>
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} size={OPTIONS.size} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            cardSize={OPTIONS.cardSize}
+          />
         ))}
       </div>
     </div>

@@ -1,25 +1,16 @@
 "use client";
-
-import Link from "next/link";
 import { MenuIcon } from "lucide-react";
 import { Button } from "../../ui/button";
 import AccountMenu from "./AccountMenu";
-import { ROLE } from "@/utils/rolesUtil";
 import CartMenu from "./CartMenu";
 
 export default function UserActions() {
-  const mockUser = {
-    name: "Chris Nolan",
-    avatarUrl: "https://i.pravatar.cc/80?img=12",
-    role: ROLE.ADMIN, // "guest" | "member" | "manager" | "owner" | "admin"
-  };
-
   return (
     <div className="flex items-center space-x-2">
-      <CartMenu user={mockUser} />
+      <CartMenu />
 
       {/* Login */}
-      <AccountMenu user={mockUser} onLogout={() => alert("Logged out")} />
+      <AccountMenu />
 
       {/* Guest */}
       {/* <AccountMenu user={null} /> */}

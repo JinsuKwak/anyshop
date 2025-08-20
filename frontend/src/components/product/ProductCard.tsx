@@ -9,24 +9,28 @@ import LinkMadeBy from "./LinkMadeBy";
 import React from "react";
 import { oswald } from "@/app/fonts";
 import { formatPrice } from "@/utils/stringUtil";
+import { CardSize } from "@/lib/redux/slices/appSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
 
 interface ProductCardProps {
-  size?: "sm" | "md" | "lg";
+  cardSize?: CardSize;
   product: Product;
 }
 
-function ProductCard({ size = "lg", product }: ProductCardProps) {
+function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
   const router = useRouter();
+  const appState = useSelector((state: RootState) => state.app);
 
   const OPTIONS = {
-    showMadeBy: true,
-    showSKU: false,
-    showOnDiscount: true,
-    isRed: false,
-    showSoldOut: true,
+    showMadeBy: appState.options.showMadeBy,
+    showSKU: appState.options.showSKU,
+    showOnDiscount: appState.options.showOnDiscount,
+    isRed: appState.options.isRed,
+    showSoldOut: appState.options.showSoldOut,
   };
 
-  const flexWidth = size === "lg" ? "w-[70%]" : "w-[60%]";
+  const flexWidth = cardSize === "lg" ? "w-[70%]" : "w-[60%]";
 
   const discountLabel =
     product.discount_type === "percent"

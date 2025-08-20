@@ -94,8 +94,8 @@ export const MENU_CONFIG: MenuConfig = {
   ],
 
   guestCommon: [
-    { label: "Log in", href: "/login" },
-    { label: "Create account", href: "/register" },
+    { label: "Sign in", href: "/auth/sign-in" },
+    { label: "Create account", href: "/auth/sign-up" },
   ],
 
   roleExtras: {
@@ -118,6 +118,6 @@ export const MENU_CONFIG: MenuConfig = {
   },
 
   authedFooter: [
-    { label: "Log out", icon: LogOut, danger: true, onSelectKey: "logout" },
+    { label: "Sign out", icon: LogOut, danger: true, onSelectKey: "logout" },
   ],
 };
