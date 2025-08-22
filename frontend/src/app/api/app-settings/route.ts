@@ -12,7 +12,7 @@ export async function GET() {
       showOnDiscount: true,
       isRed: false,
       showSoldOut: true,
-      cardSize: "md" as const,
+      cardSize: "lg" as const,
       serverTimeZone, // <- IANA TZ
     },
     serverTime: now.toISOString(),

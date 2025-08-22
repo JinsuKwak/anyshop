@@ -1,59 +1,60 @@
 import { useFetch } from "@/hooks/useFetch";
 import { Product } from "@/Types/Product";
+import { Category } from "@/Types/Category";
 import { MainProductCardSkeleton } from "@/components/skeletons/MainProductCardSkeleton";
 import { ErrorDisplay } from "@/components/ErrorDisplay";
 import Link from "next/link";
-import ProductCard from "../card/product/ProductCard";
+import ProductCard from "./product/ProductCard";
+import CategoryCard from "./category/CategoryCard";
 import { CardSize } from "@/lib/redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import ManagerEditButton from "../ui/ManagerEditButton";
 import { useAuth } from "@/hooks/useAuth";
 
-interface MainProductsSectionProps {
+type BaseProps = {
+  isTop?: boolean; // Optional prop to indicate if this is a top section
   heading: string;
   link: string;
   editLink: string;
   fetchUrl: string;
-}
+};
 
-function MainProductsSection({
-  heading,
-  link,
-  editLink,
-  fetchUrl,
-}: MainProductsSectionProps) {
+type MainCardsSectionProps =
+  | (BaseProps & { entityType: "product" })
+  | (BaseProps & { entityType: "category" });
+
+function MainCardsSection(props: MainCardsSectionProps) {
+  const { isTop, heading, link, editLink, fetchUrl, entityType } = props;
+
   const appState = useSelector((state: RootState) => state.app);
-  const OPTIONS = {
-    cardSize: appState.options.cardSize,
-  };
+  const OPTIONS = { cardSize: appState.options.cardSize as CardSize };
 
-  const { data: products, error, loading } = useFetch<Product[]>(fetchUrl);
+  const { data, error, loading } = useFetch<Product[] | Category[]>(fetchUrl);
   const { isAuthenticated, role } = useAuth();
 
-  // Grid
+  // Grid class
   const lgColsBySize: Record<CardSize, string> = {
     sm: "lg:grid-cols-6",
     md: "lg:grid-cols-5",
     lg: "lg:grid-cols-4",
   };
-
-  // Gap
   const gapBySize: Record<CardSize, string> = {
     sm: "gap-3",
     md: "gap-4",
     lg: "gap-6",
   };
-
-  // Medium
   const mdColsBySize: Record<CardSize, string> = {
     sm: "md:grid-cols-5",
     md: "md:grid-cols-3",
     lg: "md:grid-cols-2",
   };
 
+  const baseCols = entityType === "category" ? "grid-cols-2" : "";
+
   const gridClass = [
     "grid",
+    baseCols,
     mdColsBySize[OPTIONS.cardSize],
     lgColsBySize[OPTIONS.cardSize],
     gapBySize[OPTIONS.cardSize],
@@ -78,10 +79,10 @@ function MainProductsSection({
     );
   }
 
-  if (!products || products.length === 0) return null;
+  if (!data || data.length === 0) return null;
 
   return (
-    <div className="mt-10">
+    <div className={`${isTop ? "sm:mt-10" : "mt-10"}`}>
       <div className="flex items-center justify-between mb-4">
         <Link href={link} className="hover:underline">
           <h2 className="text-2xl font-bold">{heading}</h2>
@@ -96,17 +97,25 @@ function MainProductsSection({
         )}
       </div>
 
-      <div className={`${gridClass} `}>
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            cardSize={OPTIONS.cardSize}
-          />
-        ))}
+      <div className={gridClass}>
+        {entityType === "product"
+          ? (data as Product[]).map((item) => (
+              <ProductCard
+                key={item.id}
+                product={item}
+                cardSize={OPTIONS.cardSize}
+              />
+            ))
+          : (data as Category[]).map((item) => (
+              <CategoryCard
+                key={item.name}
+                category={item}
+                cardSize={OPTIONS.cardSize}
+              />
+            ))}
       </div>
     </div>
   );
 }
 
-export default MainProductsSection;
+export default MainCardsSection;

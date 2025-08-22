@@ -12,9 +12,6 @@ export default function UserActions() {
       {/* Login */}
       <AccountMenu />
 
-      {/* Guest */}
-      {/* <AccountMenu user={null} /> */}
-
       <Button variant="ghost" size="icon" className="flex md:hidden size-8">
         <MenuIcon className="size-6" />
       </Button>

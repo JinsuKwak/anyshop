@@ -18,7 +18,6 @@ import { ErrorDisplay } from "@/components/ErrorDisplay";
 import { Button } from "../ui/button";
 import { isEmptyString, isValidURL } from "@/utils/stringUtil";
 import { useAuth } from "@/hooks/useAuth";
-import { SquarePen } from "lucide-react";
 import ManagerEditButton from "../ui/ManagerEditButton";
 
 function MainCarousel() {
@@ -28,7 +27,7 @@ function MainCarousel() {
     data: items,
     error,
     loading,
-  } = useFetch<MainDisplay[]>("/main-display");
+  } = useFetch<MainDisplay[]>("api/main-display");
 
   if (loading) {
     return <MainCarouselSkeleton />;
@@ -48,10 +47,10 @@ function MainCarousel() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative hidden sm:block">
       {isAuthenticated && role >= 2 && (
         <ManagerEditButton
-          href="/admin/main-display"
+          href="/manager/main-display"
           className="absolute top-6 right-6 z-20"
           label="Edit main carousel"
         />

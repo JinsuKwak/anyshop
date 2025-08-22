@@ -1,26 +1,35 @@
 "use client";
 
 import MainCarousel from "@/components/carousel/MainCarousel";
-import MainProductsSection from "@/components/product/MainProductsSection";
-import MainCategorySection from "@/components/category/MainCategorySection";
+import MainCardsSection from "@/components/card/MainCardSection";
 
 export default function Home() {
   return (
     <div className="container py-10 space-y-12">
       <MainCarousel />
-      <MainProductsSection
+      <MainCardsSection
+        isTop={true}
+        entityType="product"
         heading={"Featured Products"}
         link={"/products/all"}
         editLink={"/manager/main-featured-products"}
-        fetchUrl={"/main-featured-products"}
+        fetchUrl={"api/main-featured-products"}
       />
-      <MainProductsSection
-        heading={"On Sale"}
+      <MainCardsSection
+        entityType="product"
+        heading={"Top Deals"}
         link={"/products/sales"}
         editLink={"/manager/main-sales-products"}
-        fetchUrl={"/main-sales-products"}
+        fetchUrl={"api/main-sales-products"}
       />
-      <MainCategorySection />
+      <MainCardsSection
+        entityType="category"
+        heading={"Shop by Category"}
+        link={"/categories/all"}
+        editLink={"/manager/main-categories"}
+        fetchUrl={"api/main-categories"}
+      />
+      <div className="mb-10" />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Card, CardFooter } from "../ui/card";
+import { Card, CardFooter } from "../../ui/card";
 import type { Product } from "@/Types/Product";
 import Image from "next/image";
-import NoImageDisplay from "../NoImageDisplay";
+import NoImageDisplay from "../../NoImageDisplay";
 import LinkMadeBy from "./LinkMadeBy";
 import React from "react";
 import { oswald } from "@/app/fonts";
@@ -12,6 +12,7 @@ import { formatPrice } from "@/utils/stringUtil";
 import { CardSize } from "@/lib/redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
+import { useState } from "react";
 
 interface ProductCardProps {
   cardSize?: CardSize;
@@ -20,6 +21,7 @@ interface ProductCardProps {
 
 function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
   const router = useRouter();
+  const [imgError, setImgError] = useState(false);
   const appState = useSelector((state: RootState) => state.app);
 
   const OPTIONS = {
@@ -86,13 +88,14 @@ function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
       >
         {/* Image */}
         <div className="relative w-full h-48 overflow-hidden">
-          {product.product_thumbnailUrl ? (
+          {product.product_thumbnailUrl && !imgError ? (
             <Image
               src={product.product_thumbnailUrl}
               alt={product.name}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 33vw"
+              onError={() => setImgError(true)}
             />
           ) : (
             <div className="w-full h-48 bg-[var(--border)]">
