@@ -1,8 +1,11 @@
+"use client";
+
 import { useState, useEffect, useMemo } from "react";
-import { fetchWrapper } from "@/utils/fetchWrapper";
+import { useStore } from "react-redux";
+import type { AppStore } from "@/lib/redux/store";
+import { createFetchWrapper } from "@/utils/fetchWrapper";
 
 const STORE_API = process.env.NEXT_PUBLIC_STORE_API ?? "";
-
 const delayMs = 300;
 
 export function useFetch<T>(endpoint: string, options?: RequestInit) {
@@ -10,6 +13,8 @@ export function useFetch<T>(endpoint: string, options?: RequestInit) {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const store = useStore() as AppStore;
+  const fetchWrapper = useMemo(() => createFetchWrapper(store), [store]);
   const stableOptions = useMemo<RequestInit | undefined>(
     () => options,
     [options]
@@ -35,9 +40,8 @@ export function useFetch<T>(endpoint: string, options?: RequestInit) {
           ...stableOptions,
           signal: controller.signal,
         });
-        if (!response.ok) {
+        if (!response.ok)
           throw new Error(`${response.status} / ${response.statusText}`);
-        }
         const json = (await response.json()) as T;
         setData(json);
         setError(null);
@@ -53,7 +57,7 @@ export function useFetch<T>(endpoint: string, options?: RequestInit) {
       controller.abort();
       if (timer) window.clearTimeout(timer);
     };
-  }, [endpoint, stableOptions]);
+  }, [endpoint, stableOptions, fetchWrapper]);
 
   return { data, error, loading };
 }

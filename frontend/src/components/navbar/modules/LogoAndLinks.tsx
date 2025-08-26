@@ -8,7 +8,7 @@ export default function LogoAndLinks() {
         <MountainIcon className="h-6 w-6" />
         <span className="font-bold hidden sm:flex">Acme Inc</span>
       </Link>
-      <div className="hidden md:flex items-center space-x-6">
+      <div className="[@media(max-width:1000px)]:hidden flex items-center space-x-6">
         <Link
           href="/products/all"
           className="text-foreground/60 transition-colors hover:text-foreground/80"

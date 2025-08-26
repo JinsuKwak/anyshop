@@ -76,3 +76,29 @@ export const refreshTokenThunk = createAsyncThunk<
   localStorage.setItem("access_token", newAccess);
   dispatch(setAccessToken(newAccess));
 });
+
+// --- ASYNC THUNKS ---
+// createAsyncThunk( TypePrefix, payloadCreator )
+// TypePrefix -> "app/fetchSettings/pending", "app/fetchSettings/fulfilled", "app/fetchSettings/rejected"
+// payloadCreator -> success = data fulfilled, failed -> rejected win payload
+
+// createAsyncThunk<
+//   Returned,         // ✅ fulfilled 액션의 payload 타입 (성공 시)
+//   ThunkArg,         // ✅ dispatch 때 넘기는 인자 타입
+//   ThunkApiConfig    // ✅ thunkAPI 설정 (state, dispatch, rejectValue 등)
+// >(typePrefix, payloadCreator)
+
+// createAsyncThunk<Returned, ThunkArg, ThunkApiConfig>(
+//   typePrefix: string,
+//   payloadCreator: (arg: ThunkArg, thunkAPI: ThunkAPI) => Promise<Returned> | Returned,
+//   options?
+// )
+
+// createAsyncThunk가 제공하는 도우미 객체. 주요 속성:
+// 	•	dispatch: 다른 액션/썽크 디스패치 가능
+// 	•	getState: 현재 루트 상태 얻기 (타입은 ThunkApiConfig로 지정)
+// 	•	rejectWithValue(value): 실패 시 커스텀 payload로 rejected 액션 보내기
+// → ThunkApiConfig의 rejectValue에 타입을 지정해야 타입 안전
+// 	•	fulfillWithValue(value, meta?): 성공 시 커스텀 payload/meta로 fulfilled 보내기(선택)
+// 	•	requestId: 이 thunk 호출의 고유 ID (중복 요청 제어 등에 유용)
+// 	•	signal: AbortSignal. 외부/내부 취소 신호 체크 가능

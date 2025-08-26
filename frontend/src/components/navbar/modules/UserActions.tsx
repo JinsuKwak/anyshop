@@ -22,7 +22,7 @@ export default function UserActions() {
       <Button
         variant="ghost"
         size="icon"
-        className="flex md:hidden size-8"
+        className="[@media(max-width:1000px)]:flex hidden size-8"
         onClick={() => setOpen(true)}
         aria-label="Open menu"
       >

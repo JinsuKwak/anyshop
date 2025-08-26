@@ -2,9 +2,8 @@
 
 import { useRef, useEffect } from "react";
 import { Provider } from "react-redux";
-import { makeStore, AppStore, AppDispatch } from "./store";
+import { makeStore, AppStore, AppDispatch, type RootState } from "./store";
 import { setSignedIn } from "./slices/userSlice";
-import { fetchAppSettings } from "./slices/appSlice";
 import { jwtDecode } from "jwt-decode";
 import { User } from "@/types/User";
 
@@ -32,20 +31,12 @@ const reauthenticate = async (dispatch: AppDispatch, refreshToken: string) => {
 
 export default function StoreProvider({
   children,
+  preloadedState,
 }: {
   children: React.ReactNode;
+  preloadedState?: Partial<RootState>;
 }) {
-  const storeRef = useRef<AppStore | null>(null);
-  if (!storeRef.current) {
-    storeRef.current = makeStore();
-    // Dispatch fetch app settings on initial load
-    storeRef.current.dispatch(fetchAppSettings());
-    if (storeRef.current) {
-      const state = storeRef.current.getState();
-      console.log("App options:", state.app.options);
-      console.log("Server time:", state.app.serverTime);
-    }
-  }
+  const storeRef = useRef(makeStore(preloadedState));
 
   useEffect(() => {
     const refreshToken = localStorage.getItem("refresh_token");

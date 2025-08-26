@@ -122,7 +122,7 @@ function MainCardsSection(props: MainCardsSectionProps) {
             ))
           : (data as Category[]).map((item) => (
               <CategoryCard
-                key={item.name}
+                key={item.id}
                 category={item}
                 cardSize={OPTIONS.cardSize}
               />

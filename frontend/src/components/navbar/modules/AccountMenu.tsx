@@ -18,6 +18,8 @@ import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
 import { signOutThunk } from "@/lib/redux/slices/authThunks";
 import { useAuth } from "@/hooks/useAuth";
 
+const DEFAULT_AVATAR = "/default-avatar.png";
+
 function MenuItemLeaf({
   item,
   onAction,
@@ -119,11 +121,11 @@ export default function AccountMenu() {
              "
           >
             <AvatarImage
-              src={user?.avatar_url ?? "https://github.com/evilrabbit.png"}
+              src={user?.avatar_url || DEFAULT_AVATAR}
               alt={user?.first_name ?? "User"}
               className="rounded-full ring-0 ring-offset-2 ring-offset-background transition-all duration-200 group-hover:ring-2 group-hover:ring-primary/50 group-hover:scale-105"
             />
-            <AvatarFallback className="rounded-full">
+            <AvatarFallback className="rounded-full text-[var(--color-secondary)] bg-[var(--color-secondary-foreground)] font-semibold">
               {user?.last_name?.[0] ?? "U"}
             </AvatarFallback>
           </Avatar>

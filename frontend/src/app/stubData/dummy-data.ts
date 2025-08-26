@@ -7,12 +7,12 @@ export const dummyProducts: Product[] = [
     name: "Wireless Mouse long long long long long long long long long long",
     made_by: "LogiTech  long long long long long long long long long long",
     sku: "WM-001  long long long long long long long long long long",
-    price_cents: 25000000,
+    price_cents: 2500000,
     on_discount: true,
     discount_type: "fixed",
     discount_percent: 0,
-    discount_amount_cents: 25000000,
-    final_price_cents: 25000000,
+    discount_amount_cents: 250000,
+    final_price_cents: 2500000,
     product_thumbnailUrl:
       "https://images.unsplash.com/photo-1754887966362-952236591654?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     product_imageUrls: [
