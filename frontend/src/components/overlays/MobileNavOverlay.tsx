@@ -52,7 +52,7 @@ export default function MobileNavOverlay({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onMouseDown={handleBackdropClick}
-          className={`fixed inset-0 z-[9999] bg-[var(--color-background)]/90 backdrop-blur-sm ${
+          className={`fixed inset-0 z-[9999] bg-white/90 backdrop-blur-sm ${
             className ?? ""
           }`}
         >

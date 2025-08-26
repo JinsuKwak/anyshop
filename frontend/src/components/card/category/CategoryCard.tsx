@@ -45,7 +45,7 @@ function ProductCard({ category }: ProductCardProps) {
               onError={() => setImgError(true)}
             />
           ) : (
-            <div className="w-full h-48 bg-[var(--border)]">
+            <div className="w-full h-48 bg-border">
               <NoImageDisplay className="w-full h-48" flat />
             </div>
           )}

@@ -12,7 +12,7 @@ function NoImageDisplay({ className, flat = false }: NoImageDisplayProps) {
   } ${className} `;
   return (
     <div
-      className={`${baseClasses} bg-[var(--color-background)] text-[var(--color-muted-foreground)] border-border`}
+      className={`${baseClasses} bg-background text-neutral-400`}
       role="alert"
     >
       <ImageIcon className="w-12 h-12" strokeWidth={1.4} />

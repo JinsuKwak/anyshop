@@ -15,14 +15,14 @@ function AddItemDisplay({
   message,
 }: AddItemDisplayProps) {
   const baseClasses =
-    "flex flex-col items-center justify-center p-6 m-4 mt-10 border border-dashed rounded-lg cursor-pointer transition hover:bg-[var(--color-accent)] hover:text-[var(--color-accent-foreground)]";
+    "flex flex-col items-center justify-center p-6 m-4 mt-10 border border-dashed rounded-lg cursor-pointer transition hover:text-neutral-500";
 
   return (
     <Link
       href={editLink}
       className={`${baseClasses} ${
         className ?? ""
-      } bg-[var(--color-background)] text-[var(--color-muted-foreground)] border-border`}
+      }  text-neutral-400 border border-neutral-300`}
     >
       <AddIcon className="w-12 h-12 mb-4" />
       <p className="text-sm">{message ?? "Click to add"}</p>

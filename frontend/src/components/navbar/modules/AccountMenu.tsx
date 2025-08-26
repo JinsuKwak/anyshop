@@ -117,7 +117,7 @@ export default function AccountMenu() {
           aria-label="User menu"
         >
           <Avatar
-            className="rounded-full border border-border/60 transition-all duration-200 group-hover:shadow-lg group-hover:shadow-black/10 group-hover:border-transparent hover:ring-2 hover:ring-[var(--color-ring)]
+            className="rounded-full border border-border/60 transition-all duration-200 group-hover:shadow-lg group-hover:shadow-black/10 group-hover:border-transparent hover:ring-2 hover:ring-primary/50
              "
           >
             <AvatarImage
@@ -125,7 +125,7 @@ export default function AccountMenu() {
               alt={user?.first_name ?? "User"}
               className="rounded-full ring-0 ring-offset-2 ring-offset-background transition-all duration-200 group-hover:ring-2 group-hover:ring-primary/50 group-hover:scale-105"
             />
-            <AvatarFallback className="rounded-full text-[var(--color-secondary)] bg-[var(--color-secondary-foreground)] font-semibold">
+            <AvatarFallback className="rounded-full text-backgroaund bg-secondary-foreground font-semibold">
               {user?.last_name?.[0] ?? "U"}
             </AvatarFallback>
           </Avatar>

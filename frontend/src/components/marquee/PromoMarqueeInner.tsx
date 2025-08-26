@@ -35,7 +35,7 @@ function PromoMarqueeInner({
 
   return (
     <div
-      className={`marquee-bar ${className ?? ""} bg-[var(--color-primary)]`}
+      className={`marquee-bar ${className ?? ""} bg-primary`}
       role="region"
       aria-label="Promo"
     >

@@ -2,12 +2,29 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type CardSize = "sm" | "md" | "lg";
 
+export type ThemeName =
+  | "default"
+  | "blue"
+  | "green"
+  | "amber"
+  | "rose"
+  | "purple"
+  | "orange"
+  | "teal"
+  | "mono"
+  | "scaled"
+  | "red"
+  | "yellow"
+  | "violet";
+
 /** App options (settings that may come from the server) */
 export interface AppOptions {
+  theme?: ThemeName;
   showMadeBy: boolean;
   showSKU: boolean;
   showOnDiscount: boolean;
-  isRed: boolean;
+  isRedMark: boolean;
+  isRedTag: boolean;
   showSoldOut: boolean;
   cardSize: CardSize;
 }
@@ -24,9 +41,11 @@ export const initialState: AppState = {
     showMadeBy: true,
     showSKU: false,
     showOnDiscount: true,
-    isRed: false,
+    isRedMark: true,
+    isRedTag: true,
     showSoldOut: true,
     cardSize: "lg",
+    theme: "default",
   },
   serverTime: null,
 };

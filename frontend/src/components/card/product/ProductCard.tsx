@@ -28,7 +28,8 @@ function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
     showMadeBy: appState.options.showMadeBy,
     showSKU: appState.options.showSKU,
     showOnDiscount: appState.options.showOnDiscount,
-    isRed: appState.options.isRed,
+    isRedMark: appState.options.isRedMark,
+    isRedTag: appState.options.isRedTag,
     showSoldOut: appState.options.showSoldOut,
   };
 
@@ -98,7 +99,7 @@ function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
               onError={() => setImgError(true)}
             />
           ) : (
-            <div className="w-full h-48 bg-[var(--border)]">
+            <div className="w-full h-48 bg-secondary">
               <NoImageDisplay className="w-full h-48" flat />
             </div>
           )}
@@ -107,7 +108,7 @@ function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
           {OPTIONS.showOnDiscount && product.on_discount && (
             <div
               className={`absolute top-2 right-2 ${
-                OPTIONS.isRed ? "bg-red-500" : "bg-[var(--color-primary)]"
+                OPTIONS.isRedMark ? "bg-red-500" : "bg-primary"
               } text-white text-xs font-bold px-2 py-1 rounded-md shadow`}
             >
               SALE
@@ -136,8 +137,12 @@ function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
             </div>
             {OPTIONS.showOnDiscount && product.on_discount && (
               <span
-                className="hidden lg:inline-flex items-center rounded-full px-2 py-0.5
-                     text-[10px] font-medium bg-red-50 text-red-600 ring-1 ring-red-200 h-fit whitespace-nowrap"
+                className={`hidden lg:inline-flex items-center rounded-full px-2 py-0.5
+                     text-[10px] ring-1 font-medium ${
+                       OPTIONS.isRedTag
+                         ? "bg-red-50 text-red-600 ring-red-200"
+                         : "text-primary ring-chart-primary/30"
+                     } h-fit whitespace-nowrap`}
               >
                 Save {discountLabel.replace("-", "")}
               </span>
@@ -177,7 +182,7 @@ function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
       </div>{" "}
       {/* SOLD OUT Overlay */}
       {OPTIONS.showSoldOut && product.stock_level <= 0 && (
-        <div className="absolute top-0 left-0 w-full bg-[var(--color-primary)] py-2 flex justify-center">
+        <div className="absolute top-0 left-0 w-full bg-primary py-2 flex justify-center">
           <span className="text-white text-sm font-bold tracking-wider uppercase">
             SOLD OUT
           </span>

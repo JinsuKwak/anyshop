@@ -8,7 +8,7 @@ export default function SearchBar() {
     <div className="flex items-center space-x-2">
       <Command
         className="rounded-lg border shadow-sm md:min-w-[450px] sm:min-w-[300px] border 
-               border-[var(--color-border)] focus-within:ring-2 focus-within:ring-[var(--color-ring)] hover:ring-2 hover:ring-[var(--color-ring)]  hover:bg-background/40 transition-all backdrop-blur supports-[backdrop-filter]:bg-background/10"
+               hover:border-hidden focus-within:border-hidden focus-within:ring-2 focus-within:ring-primary/50 hover:ring-2 hover:ring-primary/50  hover:bg-background/40 transition-all backdrop-blur supports-[backdrop-filter]:bg-background/10 caret-primary"
       >
         <CommandInput placeholder="Find anything..." />
       </Command>
@@ -16,9 +16,9 @@ export default function SearchBar() {
         <Button
           variant="secondary"
           size="icon"
-          className="size-10 border shadow-sm p-3 hidden md:flex
-             hover:ring-2 hover:ring-[var(--color-ring)]
-             transition-all cursor-pointer backdrop-blur supports-[backdrop-filter]:bg-background/10 hover:bg-background/40"
+          className="size-10 border hover:border-hidden shadow-sm p-3 hidden md:flex
+             hover:ring-2 hover:bg-transparent/60
+             transition-all cursor-pointer backdrop-blur supports-[backdrop-filter]:bg-background/10  hover:text-primary hover:ring-primary/50"
         >
           <SearchIcon className="h-6 w-6" />
         </Button>

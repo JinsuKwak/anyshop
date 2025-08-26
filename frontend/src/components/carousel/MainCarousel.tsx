@@ -102,7 +102,7 @@ function MainCarousel({ editLink }: { editLink: string }) {
                         />
                       )}
                       {!isEmptyString(item.cta_label) && (
-                        <Button className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-lg font-bold bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] hover:text-[var(--color-primary)] shadow-none">
+                        <Button className="absolute bottom-4 right-4 bg-opacity-50 text-white p-2 rounded-lg font-bold bg-primary hover:bg-transparent hover:text-primary shadow-none">
                           {item.cta_label}
                         </Button>
                       )}

@@ -27,17 +27,19 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const appSettings = await getAppSettings();
   const preloadedState = { app: appSettings };
+  const theme = appSettings.options?.theme ?? "default";
+  const themeClass = `theme-${theme}`; // theme-green
 
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" className={themeClass}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <ThemeProvider> */}
-        <StoreProvider preloadedState={preloadedState}>
-          <PageLayout>{children}</PageLayout>
-        </StoreProvider>
-        {/* </ThemeProvider> */}
+        <div className="theme-container">
+          <StoreProvider preloadedState={preloadedState}>
+            <PageLayout>{children}</PageLayout>
+          </StoreProvider>
+        </div>
       </body>
     </html>
   );

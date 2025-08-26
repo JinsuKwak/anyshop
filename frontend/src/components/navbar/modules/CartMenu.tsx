@@ -47,7 +47,7 @@ export default function CartMenu({
           <Button
             variant="secondary"
             size="icon"
-            className="hidden md:flex size-8 cursor-pointer hover:ring-2 hover:ring-[var(--color-ring)] transition-all border shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/10 hover:bg-background/40"
+            className="hidden md:flex size-8 cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all border hover:border-hidden shadow-sm backdrop-blur supports-[backdrop-filter]:bg-transparent/10 hover:bg-transparent/40 hover:text-primary" // TODO
             aria-label="Open cart"
           >
             <ShoppingCartIcon className="h-6 w-6" />
