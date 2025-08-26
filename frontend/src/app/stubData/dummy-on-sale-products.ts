@@ -1,4 +1,4 @@
-import { Product } from "@/Types/Product";
+import { Product } from "@/types/Product";
 import { dummyProducts } from "./dummy-data";
 
 // For demonstration, we'll just take a different slice of the existing products.

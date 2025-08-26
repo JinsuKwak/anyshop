@@ -1,5 +1,6 @@
 export interface Category {
-  name: string; //ID
+  id: string; // UUID
+  name: string;
   store_id: string; // UUID
   image_url?: string;
   is_deleted: boolean;

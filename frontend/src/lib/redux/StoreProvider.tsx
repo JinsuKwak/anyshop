@@ -6,7 +6,7 @@ import { makeStore, AppStore, AppDispatch } from "./store";
 import { setSignedIn } from "./slices/userSlice";
 import { fetchAppSettings } from "./slices/appSlice";
 import { jwtDecode } from "jwt-decode";
-import { User } from "@/Types/User";
+import { User } from "@/types/User";
 
 // Helper function to manage re-authentication
 const reauthenticate = async (dispatch: AppDispatch, refreshToken: string) => {

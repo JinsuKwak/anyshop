@@ -12,15 +12,17 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 import { useFetch } from "@/hooks/useFetch";
-import { MainDisplay } from "@/Types/MainDisplay";
+import { MainDisplay } from "@/types/MainDisplay";
 import { MainCarouselSkeleton } from "@/components/skeletons/MainCarouselSkeleton";
-import { ErrorDisplay } from "@/components/ErrorDisplay";
+import { ErrorDisplay } from "@/components/placeholder/ErrorDisplay";
 import { Button } from "../ui/button";
 import { isEmptyString, isValidURL } from "@/utils/stringUtil";
 import { useAuth } from "@/hooks/useAuth";
 import ManagerEditButton from "../ui/ManagerEditButton";
+import AddItemDisplay from "../placeholder/AddItemDisplay";
+import { ImagePlus } from "lucide-react";
 
-function MainCarousel() {
+function MainCarousel({ editLink }: { editLink: string }) {
   const { isAuthenticated, role } = useAuth();
 
   const {
@@ -41,16 +43,28 @@ function MainCarousel() {
     );
   }
 
-  if (!items || items.length === 0) {
-    // if user role is admin show message to add items TODO
-    return null;
+  const activeItems = items?.filter((i) => i.is_active).map((i) => i) ?? [];
+
+  if (!activeItems || activeItems.length === 0) {
+    if (isAuthenticated && role >= 2) {
+      return (
+        <AddItemDisplay
+          editLink={editLink}
+          className={"aspect-4/1"}
+          AddIcon={ImagePlus}
+          message="No items found. Click to add a new item."
+        />
+      );
+    } else {
+      return null;
+    }
   }
 
   return (
     <div className="relative hidden sm:block">
       {isAuthenticated && role >= 2 && (
         <ManagerEditButton
-          href="/manager/main-display"
+          href={editLink}
           className="absolute top-6 right-6 z-20"
           label="Edit main carousel"
         />
@@ -69,10 +83,10 @@ function MainCarousel() {
         ]}
       >
         <CarouselContent>
-          {items.map((item) => (
+          {activeItems.map((item) => (
             <CarouselItem key={item.id}>
               <div className="p-4">
-                <Link href={isValidURL(item.link_url) ? item.link_url : "#"}>
+                <Link href={item.link_url ? item.link_url : "#"}>
                   <Card className="overflow-hidden p-0">
                     <CardContent className="flex aspect-4/1 items-center justify-center relative">
                       {item.image_url && (

@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { RootState } from "../store";
 import { setSignedIn, setSignedOut, setAccessToken } from "./userSlice";
-import { User } from "@/Types/User";
+import { User } from "@/types/User";
 
 type Decoded = Omit<User, "password_hash"> & JwtPayload;
 

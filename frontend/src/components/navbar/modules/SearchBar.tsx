@@ -7,7 +7,7 @@ export default function SearchBar() {
   return (
     <div className="flex items-center space-x-2">
       <Command
-        className="rounded-lg border shadow-sm md:min-w-[450px] [@media(max-width:1000px)]:min-w-[300px] border 
+        className="rounded-lg border shadow-sm md:min-w-[450px] sm:min-w-[300px] border 
                border-[var(--color-border)] focus-within:ring-2 focus-within:ring-[var(--color-ring)] hover:ring-2 hover:ring-[var(--color-ring)]  hover:bg-background/40 transition-all backdrop-blur supports-[backdrop-filter]:bg-background/10"
       >
         <CommandInput placeholder="Find anything..." />

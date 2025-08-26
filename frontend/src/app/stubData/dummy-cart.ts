@@ -1,4 +1,4 @@
-import { Cart } from "@/Types/Cart";
+import { Cart } from "@/types/Cart";
 
 const cartId = "cart-1234-5678-9012-abcdefghijkl";
 const storeId = "c1d2e3f4-g5h6-7890-1234-567890abcdef";

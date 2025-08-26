@@ -1,4 +1,4 @@
-import { Announcement } from "@/Types/Announcement";
+import { Announcement } from "@/types/Announcement";
 
 export const dummyAnnouncements: Announcement[] = [
   {

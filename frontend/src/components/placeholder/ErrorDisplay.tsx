@@ -11,7 +11,7 @@ export function ErrorDisplay({
   message = "An unexpected error occurred.",
   className,
 }: ErrorDisplayProps) {
-  const baseClasses = `flex flex-col items-center justify-center p-6 border rounded-lg ${className}`;
+  const baseClasses = `flex flex-col items-center justify-center p-6 m-4 mt-10 border rounded-lg ${className}`;
 
   if (red) {
     return (

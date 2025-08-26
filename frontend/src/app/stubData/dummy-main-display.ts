@@ -1,4 +1,4 @@
-import { MainDisplay, DisplayType } from "@/Types/MainDisplay";
+import { MainDisplay, DisplayType } from "@/types/MainDisplay";
 
 export const dummyMainDisplayItems: MainDisplay[] = [
   {
@@ -10,6 +10,8 @@ export const dummyMainDisplayItems: MainDisplay[] = [
     link_url: "/products",
     cta_label: "Shop Now",
     is_active: true,
+    starts_at: "2025-02-05T12:00:00.000Z",
+    ends_at: "2025-02-05T14:00:00.000Z",
     created_at: new Date(),
     updated_at: new Date(),
   },
@@ -23,6 +25,8 @@ export const dummyMainDisplayItems: MainDisplay[] = [
     link_url: "/products",
     cta_label: "Shop Now",
     is_active: true,
+    starts_at: "2025-02-05T12:00:00.000Z",
+    ends_at: "2025-02-05T14:00:00.000Z",
     created_at: new Date(),
     updated_at: new Date(),
   },
@@ -35,6 +39,8 @@ export const dummyMainDisplayItems: MainDisplay[] = [
     link_url: " ",
     cta_label: "",
     is_active: true,
+    starts_at: "2025-02-05T12:00:00.000Z",
+    ends_at: "2025-02-05T14:00:00.000Z",
     created_at: new Date(),
     updated_at: new Date(),
   },

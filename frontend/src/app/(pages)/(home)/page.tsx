@@ -6,7 +6,7 @@ import MainCardsSection from "@/components/card/MainCardSection";
 export default function Home() {
   return (
     <div className="container py-10 space-y-12">
-      <MainCarousel />
+      <MainCarousel editLink="/manager/main-display" />
       <MainCardsSection
         isTop={true}
         entityType="product"
@@ -25,7 +25,7 @@ export default function Home() {
       <MainCardsSection
         entityType="category"
         heading={"Shop by Category"}
-        link={"/categories/all"}
+        link={"/category/all"}
         editLink={"/manager/main-categories"}
         fetchUrl={"api/main-categories"}
       />

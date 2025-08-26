@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { Card, CardFooter } from "../../ui/card";
-import type { Product } from "@/Types/Product";
+import type { Product } from "@/types/Product";
 import Image from "next/image";
-import NoImageDisplay from "../../NoImageDisplay";
+import NoImageDisplay from "../../placeholder/NoImageDisplay";
 import LinkMadeBy from "./LinkMadeBy";
 import React from "react";
 import { oswald } from "@/app/fonts";

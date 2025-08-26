@@ -13,6 +13,8 @@ export interface MainDisplay {
   link_url: string;
   cta_label: string;
   is_active: boolean;
+  starts_at?: string | null;
+  ends_at?: string | null;
   created_at: Date;
   updated_at: Date;
 }

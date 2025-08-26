@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { User } from "@/Types/User";
+import { User } from "@/types/User";
 import { dummyUsers } from "@/app/stubData/dummy-users";
 import jwt from "jsonwebtoken";
 
@@ -46,8 +46,12 @@ export async function POST(request: Request) {
 
     const { password_hash, ...userPayload } = newUser;
 
-    const accessToken = jwt.sign(userPayload, jwtAccessSecret, { expiresIn: "15m" });
-    const refreshToken = jwt.sign({ id: newUser.id }, jwtRefreshSecret, { expiresIn: "7d" });
+    const accessToken = jwt.sign(userPayload, jwtAccessSecret, {
+      expiresIn: "15m",
+    });
+    const refreshToken = jwt.sign({ id: newUser.id }, jwtRefreshSecret, {
+      expiresIn: "7d",
+    });
 
     return NextResponse.json({ user: userPayload, accessToken, refreshToken });
   } catch (error) {

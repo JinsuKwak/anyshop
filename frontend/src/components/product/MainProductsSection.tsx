@@ -1,7 +1,7 @@
 import { useFetch } from "@/hooks/useFetch";
-import { Product } from "@/Types/Product";
+import { Product } from "@/types/Product";
 import { MainProductCardSkeleton } from "@/components/skeletons/MainProductCardSkeleton";
-import { ErrorDisplay } from "@/components/ErrorDisplay";
+import { ErrorDisplay } from "@/components/placeholder/ErrorDisplay";
 import Link from "next/link";
 import ProductCard from "../card/product/ProductCard";
 import { CardSize } from "@/lib/redux/slices/appSlice";

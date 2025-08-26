@@ -1,8 +1,8 @@
 import { useFetch } from "@/hooks/useFetch";
-import { Product } from "@/Types/Product";
-import { Category } from "@/Types/Category";
+import { Product } from "@/types/Product";
+import { Category } from "@/types/Category";
 import { MainProductCardSkeleton } from "@/components/skeletons/MainProductCardSkeleton";
-import { ErrorDisplay } from "@/components/ErrorDisplay";
+import { ErrorDisplay } from "@/components/placeholder/ErrorDisplay";
 import Link from "next/link";
 import ProductCard from "./product/ProductCard";
 import CategoryCard from "./category/CategoryCard";
@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import ManagerEditButton from "../ui/ManagerEditButton";
 import { useAuth } from "@/hooks/useAuth";
+import AddItemDisplay from "../placeholder/AddItemDisplay";
+import { Plus } from "lucide-react";
 
 type BaseProps = {
   isTop?: boolean; // Optional prop to indicate if this is a top section
@@ -79,8 +81,20 @@ function MainCardsSection(props: MainCardsSectionProps) {
     );
   }
 
-  if (!data || data.length === 0) return null;
-
+  if (!data || data.length === 0) {
+    if (isAuthenticated && role >= 2) {
+      return (
+        <AddItemDisplay
+          editLink={editLink}
+          className={"aspect-4/1"}
+          AddIcon={Plus}
+          message="No items found. Click to add a new item."
+        />
+      );
+    } else {
+      return null;
+    }
+  }
   return (
     <div className={`${isTop ? "sm:mt-10" : "mt-10"}`}>
       <div className="flex items-center justify-between mb-4">

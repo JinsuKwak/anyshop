@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "@/Types/User";
+import { User } from "@/types/User";
 
 export interface UserState {
   user: Omit<User, "password_hash"> | null;

@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 import { Card } from "../../ui/card";
 import Image from "next/image";
-import NoImageDisplay from "../../NoImageDisplay";
+import NoImageDisplay from "../../placeholder/NoImageDisplay";
 import React from "react";
 import { CardSize } from "@/lib/redux/slices/appSlice";
-import { Category } from "@/Types/Category";
+import { Category } from "@/types/Category";
 import { useState } from "react";
 
 interface ProductCardProps {
@@ -18,7 +18,7 @@ function ProductCard({ category }: ProductCardProps) {
   const router = useRouter();
   const [imgError, setImgError] = useState(false);
 
-  const goDetail = () => router.push(`/category/${category.name}`);
+  const goDetail = () => router.push(`/category/${category.slug}`);
 
   return (
     <Card
