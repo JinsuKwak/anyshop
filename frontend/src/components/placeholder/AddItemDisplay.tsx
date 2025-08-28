@@ -15,7 +15,7 @@ function AddItemDisplay({
   message,
 }: AddItemDisplayProps) {
   const baseClasses =
-    "flex flex-col items-center justify-center p-6 m-4 mt-10 border border-dashed rounded-lg cursor-pointer transition hover:text-neutral-500";
+    "flex flex-col items-center justify-center p-6 m-4 mt-10 border border-dashed rounded-lg cursor-pointer transition hover:text-neutral-500 hover:bg-neutral-100  ";
 
   return (
     <Link

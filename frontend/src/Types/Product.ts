@@ -2,6 +2,7 @@ export interface Product {
   id: string; // UUID
   store_id: string; // UUID
   name: string;
+  category?: string; // Category slug
   made_by?: string; // Maker, Brand, Artis toggle default false
   sku?: string; // SKU toggle deafult: false
   price_cents: number;

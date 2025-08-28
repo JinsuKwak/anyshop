@@ -7,14 +7,14 @@ export async function GET() {
   const now = new Date();
   const appSettings = {
     options: {
-      theme: "default",
+      theme: "deafult",
       showMadeBy: true,
       showSKU: false,
       showOnDiscount: true,
       isRedMark: false,
       isRedTag: true,
       showSoldOut: true,
-      cardSize: "md" as const,
+      cardSize: "lg" as const,
       serverTimeZone, // <- IANA TZ
     },
     serverTime: now.toISOString(),

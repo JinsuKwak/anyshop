@@ -26,8 +26,8 @@ export default function Home() {
         entityType="category"
         heading={"Shop by Category"}
         link={"/category/all"}
-        editLink={"/manager/main-categories"}
-        fetchUrl={"api/main-categories"}
+        editLink={"/manager/categories"}
+        fetchUrl={"api/categories"}
       />
       <div className="mb-10" />
     </div>

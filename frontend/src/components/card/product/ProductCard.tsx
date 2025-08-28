@@ -40,7 +40,7 @@ function ProductCard({ cardSize = "lg", product }: ProductCardProps) {
       ? `-${product.discount_percent ?? 0}%`
       : `-${formatPrice(product.discount_amount_cents ?? 0)}`;
 
-  const goDetail = () => router.push(`/products/${product.id}`);
+  const goDetail = () => router.push(`/product/${product.id}`);
 
   const formattedFinalPrice = formatPrice(product.final_price_cents);
   const [final_dollars, final_cents] = formattedFinalPrice.split(".");

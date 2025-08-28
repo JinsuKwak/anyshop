@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import ManagerEditButton from "../ui/ManagerEditButton";
 import { useAuth } from "@/hooks/useAuth";
+import { ROLE } from "@/utils/rolesUtil";
 
 interface MainProductsSectionProps {
   heading: string;
@@ -87,7 +88,7 @@ function MainProductsSection({
           <h2 className="text-2xl font-bold">{heading}</h2>
         </Link>
 
-        {isAuthenticated && role >= 2 && (
+        {isAuthenticated && role >= ROLE.MANAGER && (
           <ManagerEditButton
             href={editLink}
             label="Edit"

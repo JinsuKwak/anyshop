@@ -21,6 +21,7 @@ import { useAuth } from "@/hooks/useAuth";
 import ManagerEditButton from "../ui/ManagerEditButton";
 import AddItemDisplay from "../placeholder/AddItemDisplay";
 import { ImagePlus } from "lucide-react";
+import { ROLE } from "@/utils/rolesUtil";
 
 function MainCarousel({ editLink }: { editLink: string }) {
   const { isAuthenticated, role } = useAuth();
@@ -46,7 +47,7 @@ function MainCarousel({ editLink }: { editLink: string }) {
   const activeItems = items?.filter((i) => i.is_active).map((i) => i) ?? [];
 
   if (!activeItems || activeItems.length === 0) {
-    if (isAuthenticated && role >= 2) {
+    if (isAuthenticated && role >= ROLE.MANAGER) {
       return (
         <AddItemDisplay
           editLink={editLink}

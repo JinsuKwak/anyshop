@@ -13,6 +13,7 @@ import ManagerEditButton from "../ui/ManagerEditButton";
 import { useAuth } from "@/hooks/useAuth";
 import AddItemDisplay from "../placeholder/AddItemDisplay";
 import { Plus } from "lucide-react";
+import { ROLE } from "@/utils/rolesUtil";
 
 type BaseProps = {
   isTop?: boolean; // Optional prop to indicate if this is a top section
@@ -102,7 +103,7 @@ function MainCardsSection(props: MainCardsSectionProps) {
           <h2 className="text-2xl font-bold">{heading}</h2>
         </Link>
 
-        {isAuthenticated && role >= 2 && (
+        {isAuthenticated && role >= ROLE.MANAGER && (
           <ManagerEditButton
             href={editLink}
             label="Edit"

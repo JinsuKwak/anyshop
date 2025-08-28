@@ -13,7 +13,7 @@ export function ErrorDisplay({
 
   return (
     <div
-      className={`${baseClasses} text-neutral-400 border border-neutral-300`}
+      className={`text-neutral-400 border border-neutral-300 ${baseClasses}`}
       role="alert"
     >
       <AlertTriangle className="w-12 h-12 mb-4" />
