@@ -1,3 +1,4 @@
+"use client";
 import { useFetch } from "@/hooks/useFetch";
 import { Product } from "@/types/Product";
 import { Category } from "@/types/Category";
@@ -9,11 +10,12 @@ import CategoryCard from "./category/CategoryCard";
 import { CardSize } from "@/lib/redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import ManagerEditButton from "../ui/ManagerEditButton";
+import ManagerActionButton from "../button/ManagerActionButton";
 import { useAuth } from "@/hooks/useAuth";
 import AddItemDisplay from "../placeholder/AddItemDisplay";
 import { Plus } from "lucide-react";
 import { ROLE } from "@/utils/rolesUtil";
+import { isAtLeast } from "@/utils/rolesUtil";
 
 type BaseProps = {
   isTop?: boolean; // Optional prop to indicate if this is a top section
@@ -83,7 +85,7 @@ function MainCardsSection(props: MainCardsSectionProps) {
   }
 
   if (!data || data.length === 0) {
-    if (isAuthenticated && role >= 2) {
+    if (isAuthenticated && isAtLeast(role, ROLE.MANAGER)) {
       return (
         <AddItemDisplay
           editLink={editLink}
@@ -103,12 +105,8 @@ function MainCardsSection(props: MainCardsSectionProps) {
           <h2 className="text-2xl font-bold">{heading}</h2>
         </Link>
 
-        {isAuthenticated && role >= ROLE.MANAGER && (
-          <ManagerEditButton
-            href={editLink}
-            label="Edit"
-            className="ml-4 mr-6"
-          />
+        {isAuthenticated && isAtLeast(role, ROLE.MANAGER) && (
+          <ManagerActionButton href={editLink} className="ml-4 mr-6" />
         )}
       </div>
 

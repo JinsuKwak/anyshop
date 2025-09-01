@@ -20,6 +20,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { ROLE } from "@/utils/rolesUtil";
 import AddItemDisplay from "../placeholder/AddItemDisplay";
 import { Plus } from "lucide-react";
+import { isAtLeast } from "@/utils/rolesUtil";
 
 const PRODUCTS_PER_PAGE = 12;
 
@@ -108,7 +109,7 @@ export default function ProductGrid({
   }
 
   if (currentProducts.length === 0) {
-    if (isAuthenticated && role >= ROLE.MANAGER) {
+    if (isAuthenticated && isAtLeast(role, ROLE.MANAGER)) {
       return (
         <AddItemDisplay
           //TODO at mamager/add-pruduct page detect [on-sale, (all, others), search] keyword

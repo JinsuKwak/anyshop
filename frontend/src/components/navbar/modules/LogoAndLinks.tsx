@@ -17,14 +17,14 @@ export default function LogoAndLinks() {
           Products
         </Link>
         <Link
-          href="/about"
+          href="/contents/about"
           className="text-foreground/60 transition-colors hover:text-foreground/80"
           prefetch={false}
         >
           About
         </Link>
         <Link
-          href="/contact"
+          href="/contents/contact"
           className="text-foreground/60 transition-colors hover:text-foreground/80"
           prefetch={false}
         >

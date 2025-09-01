@@ -34,8 +34,8 @@ export default function UserActions() {
         onClose={() => setOpen(false)}
         links={[
           { href: "/products/all", label: "Products", prefetch: true },
-          { href: "/about", label: "About", prefetch: false },
-          { href: "/contact", label: "Contact", prefetch: false },
+          { href: "/contents/about", label: "About", prefetch: false },
+          { href: "/contents/contact", label: "Contact", prefetch: false },
           { href: "/cart", label: "Cart", prefetch: false },
         ]}
       />

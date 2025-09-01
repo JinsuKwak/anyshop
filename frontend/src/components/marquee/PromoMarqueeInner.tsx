@@ -78,7 +78,7 @@ function PromoMarqueeInner({
           left: 0;
           background: linear-gradient(
             90deg,
-            var(--color-primary) 0%,
+            var(--primary) 0%,
             transparent 100%
           );
         }
@@ -86,7 +86,7 @@ function PromoMarqueeInner({
           right: 0;
           background: linear-gradient(
             270deg,
-            var(--color-primary) 0%,
+            var(--primary) 0%,
             transparent 100%
           );
         }

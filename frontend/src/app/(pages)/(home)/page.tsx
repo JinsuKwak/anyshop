@@ -1,5 +1,3 @@
-"use client";
-
 import MainCarousel from "@/components/carousel/MainCarousel";
 import MainCardsSection from "@/components/card/MainCardSection";
 

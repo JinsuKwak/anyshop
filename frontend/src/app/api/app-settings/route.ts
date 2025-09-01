@@ -7,7 +7,7 @@ export async function GET() {
   const now = new Date();
   const appSettings = {
     options: {
-      theme: "deafult",
+      theme: "defualt",
       showMadeBy: true,
       showSKU: false,
       showOnDiscount: true,

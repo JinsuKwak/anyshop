@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { useFetch } from "@/hooks/useFetch";
-import type { Category } from "@/types/Category";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import { useAuth } from "@/hooks/useAuth";
-import { CategorySummary } from "@/app/(pages)/products/[category]/ProductsPageClient";
+import type { CategorySummary } from "@/types";
 
 interface ProductFiltersProps {
   allCategories: CategorySummary[];
@@ -22,9 +20,9 @@ export default function ProductFilters({ allCategories }: ProductFiltersProps) {
   const activeCategory = pathname.split("/").pop();
 
   return (
-    <aside className="space-y-4">
+    <div className="space-y-4">
       <div>
-        <h3 className="font-semibold mb-2">Shop by Category</h3>
+        <h3 className="font-semibold mb-4">Shop by Category</h3>
         <div className="flex flex-col space-y-1">
           {allCategories.map((category) => (
             <Link
@@ -57,6 +55,6 @@ export default function ProductFilters({ allCategories }: ProductFiltersProps) {
           </Link>
         </div>
       </div>
-    </aside>
+    </div>
   );
 }

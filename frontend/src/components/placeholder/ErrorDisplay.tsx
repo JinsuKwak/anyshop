@@ -1,7 +1,7 @@
 import { AlertTriangle } from "lucide-react";
 
 interface ErrorDisplayProps {
-  message: string;
+  message?: string;
   className?: string;
 }
 

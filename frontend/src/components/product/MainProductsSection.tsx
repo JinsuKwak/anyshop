@@ -7,10 +7,10 @@ import ProductCard from "../card/product/ProductCard";
 import { CardSize } from "@/lib/redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import ManagerEditButton from "../ui/ManagerEditButton";
+import ManagerEditButton from "../button/ManagerActionButton";
 import { useAuth } from "@/hooks/useAuth";
 import { ROLE } from "@/utils/rolesUtil";
-
+import { isAtLeast } from "@/utils/rolesUtil";
 interface MainProductsSectionProps {
   heading: string;
   link: string;
@@ -88,12 +88,8 @@ function MainProductsSection({
           <h2 className="text-2xl font-bold">{heading}</h2>
         </Link>
 
-        {isAuthenticated && role >= ROLE.MANAGER && (
-          <ManagerEditButton
-            href={editLink}
-            label="Edit"
-            className="ml-4 mr-6"
-          />
+        {isAuthenticated && isAtLeast(role, ROLE.MANAGER) && (
+          <ManagerEditButton href={editLink} className="ml-4 mr-6" />
         )}
       </div>
 

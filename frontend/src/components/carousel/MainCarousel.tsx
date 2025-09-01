@@ -18,10 +18,11 @@ import { ErrorDisplay } from "@/components/placeholder/ErrorDisplay";
 import { Button } from "../ui/button";
 import { isEmptyString, isValidURL } from "@/utils/stringUtil";
 import { useAuth } from "@/hooks/useAuth";
-import ManagerEditButton from "../ui/ManagerEditButton";
+import ManagerEditButton from "../button/ManagerActionButton";
 import AddItemDisplay from "../placeholder/AddItemDisplay";
 import { ImagePlus } from "lucide-react";
 import { ROLE } from "@/utils/rolesUtil";
+import { isAtLeast } from "@/utils/rolesUtil";
 
 function MainCarousel({ editLink }: { editLink: string }) {
   const { isAuthenticated, role } = useAuth();
@@ -47,7 +48,7 @@ function MainCarousel({ editLink }: { editLink: string }) {
   const activeItems = items?.filter((i) => i.is_active).map((i) => i) ?? [];
 
   if (!activeItems || activeItems.length === 0) {
-    if (isAuthenticated && role >= ROLE.MANAGER) {
+    if (isAuthenticated && isAtLeast(role, ROLE.MANAGER)) {
       return (
         <AddItemDisplay
           editLink={editLink}
@@ -63,11 +64,10 @@ function MainCarousel({ editLink }: { editLink: string }) {
 
   return (
     <div className="relative hidden sm:block">
-      {isAuthenticated && role >= 2 && (
+      {isAuthenticated && isAtLeast(role, ROLE.MANAGER) && (
         <ManagerEditButton
           href={editLink}
           className="absolute top-6 right-6 z-20"
-          label="Edit main carousel"
         />
       )}
       <Carousel

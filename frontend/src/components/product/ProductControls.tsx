@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-import { CategorySummary } from "@/app/(pages)/products/[category]/ProductsPageClient";
+import type { CategorySummary } from "@/types";
 
 const SORT_OPTIONS = [
   "date-desc",
