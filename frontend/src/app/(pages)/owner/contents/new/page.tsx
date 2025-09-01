@@ -2,9 +2,7 @@ import ContentPageClient from "./ContentPageClient";
 import type { ContentSummary } from "@/types";
 import { ErrorDisplay } from "@/components/placeholder/ErrorDisplay";
 
-export default async function Page(context: { params: { content: string } }) {
-  const { content } = await context.params;
-
+export default async function Page() {
   let contents: ContentSummary[] = [];
 
   try {
@@ -29,5 +27,5 @@ export default async function Page(context: { params: { content: string } }) {
 
   const allContents = [...contents];
 
-  return <ContentPageClient contentSlug={content} allContents={allContents} />;
+  return <ContentPageClient allContents={allContents} />;
 }

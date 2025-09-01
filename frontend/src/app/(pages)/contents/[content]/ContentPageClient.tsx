@@ -6,6 +6,9 @@ import TwoColumnLayout from "@/layouts/TwoColumnLayout";
 import ContentPage from "@/components/content/ContentPage";
 import { ContentPageSidebar } from "@/components/sidebar/ContentPageSidebar";
 import type { ContentSummary } from "@/types";
+import { ROLE, isAtLeast } from "@/utils/rolesUtil";
+import { useAuth } from "@/hooks/useAuth";
+import { useState } from "react";
 
 interface ContentPageClientProps {
   contentSlug: string;
@@ -17,6 +20,7 @@ function ContentPageClient({
   allContents,
 }: ContentPageClientProps) {
   const router = useRouter();
+  const [isEditing, setIsEditing] = useState(false);
 
   const contentSummary = allContents?.find((cont) => cont.slug === contentSlug);
 
@@ -29,8 +33,16 @@ function ContentPageClient({
   if (!contentSummary) return null;
   return (
     <TwoColumnLayout
-      left={<ContentPageSidebar allContents={allContents} />}
-      right={<ContentPage contentSummary={contentSummary} />}
+      left={
+        <ContentPageSidebar allContents={allContents} isEditing={isEditing} />
+      }
+      right={
+        <ContentPage
+          contentSummary={contentSummary}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+        />
+      }
     />
   );
 }
